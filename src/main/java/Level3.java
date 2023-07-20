@@ -31,10 +31,10 @@ public class Level3 {
             }
             if (game.getPlayer1Victories() > game.getPlayer2Victories()){
                 System.out.println("You won!");
-                countVictories.computeIfPresent("User", (k,v) -> v+ game.getPlayer1Victories());
+                countVictories.computeIfPresent("User", (k,v) -> v+ 1);
             } else if (game.getPlayer1Victories() < game.getPlayer2Victories()) {
                 System.out.println(player + " won!");
-                countVictories.computeIfPresent(player, (k,v) -> game.getPlayer2Victories());
+                countVictories.computeIfPresent(player, (k,v) -> v+1);
             } else {
                 System.out.println("Tie!");
             }
@@ -49,9 +49,9 @@ public class Level3 {
                         countRounds++;
                     }
                     if (game.getPlayer1Victories() > game.getPlayer2Victories()) {
-                        countVictories.computeIfPresent(pcPlayers[i], (k, v) -> v + game.getPlayer1Victories());
+                        countVictories.computeIfPresent(pcPlayers[i], (k, v) -> v + 1);
                     } else if (game.getPlayer1Victories() < game.getPlayer2Victories()) {
-                        countVictories.computeIfPresent(pcPlayers[j], (k, v) -> game.getPlayer2Victories());
+                        countVictories.computeIfPresent(pcPlayers[j], (k, v) -> v + 1);
                     }
                 }
             }
