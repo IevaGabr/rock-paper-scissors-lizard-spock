@@ -1,60 +1,52 @@
+import java.util.Map;
+
 public enum Shape {
-    ROCK ("Rock", "Scissors", "crushes", "Paper", "covers"),
-    SCISSORS("Scissors", "Lizard", "decapitate", "Spock", "smashes"),
-    PAPER("Paper","Spock", "smashes", "Scissors", "cuts"),
-    LIZARD("Lizard", "Paper", "eats", "Rock", "crushes"),
-    SPOCK("Spock", "Rock", "vaporizes", "Lizard", "poisons");
+    ROCK("Rock", Map.of("Scissors", "crushes", "Lizard", "crushes")),
+    SCISSORS("Scissors", Map.of("Lizard", "decapitate", "Paper", "cuts")),
+    PAPER("Paper", Map.of("Rock", "covers", "Spock", "disproves")),
+    LIZARD("Lizard", Map.of("Spock", "poisons", "Paper", "eats")),
+    SPOCK("Spock", Map.of("Scissors", "smashes", "Rock", "vaporizes"));
 
     private final String name;
-    private final String strongerThan;
-    private final String strongerOperation;
-    private final String weakerThan;
-    private final String weakerOperation;
+    private final Map<String, String> strongerThan;
 
-    Shape(String name, String strongerThan, String strongerOperation, String weakerThan, String weakerOperation) {
+    Shape(String name, Map<String, String> strongerThan) {
         this.name = name;
         this.strongerThan = strongerThan;
-        this.strongerOperation = strongerOperation;
-        this.weakerThan = weakerThan;
-        this.weakerOperation = weakerOperation;
     }
 
-    public static Shape getUserChoice (String userChoice){
-        switch (userChoice.toLowerCase()){
-            case "r" -> {return ROCK;}
-            case "sc" -> {return  SCISSORS;}
-            case "p" -> {return PAPER;}
-            case "l" -> {return LIZARD;}
-            case "sp" -> {return SPOCK;}
+    public static Shape getUserChoice(String userChoice) {
+        switch (userChoice.toLowerCase()) {
+            case "r" -> {
+                return ROCK;
+            }
+            case "sc" -> {
+                return SCISSORS;
+            }
+            case "p" -> {
+                return PAPER;
+            }
+            case "l" -> {
+                return LIZARD;
+            }
+            case "sp" -> {
+                return SPOCK;
+            }
         }
         return null;
     }
 
-    public boolean checkGreater (Shape choice){
-        return this.getStrongerThan().equals(choice.getName());
-    }
-
-    public boolean checkWeaker (Shape choice){
-        return choice.getWeakerThan().equals(this.getName());
+    public boolean checkStronger(Shape choice){
+        return this.getStrongerThan().containsKey(choice.getName());
     }
 
     public String getName() {
         return name;
     }
 
-    public String getStrongerThan() {
+    public Map<String, String> getStrongerThan() {
         return strongerThan;
     }
-
-    public String getStrongerOperation() {
-        return strongerOperation;
-    }
-
-    public String getWeakerThan() {
-        return weakerThan;
-    }
-
-    public String getWeakerOperation() {
-        return weakerOperation;
-    }
 }
+
+

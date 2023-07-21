@@ -1,6 +1,8 @@
+import java.util.List;
+
 public class Level2 {
     public static void main(String[] args) {
-        String[] pcNames = Game.getPcPlayers(3);
+        List<String> pcNames = Game.getPcPlayers(3);
         int userWonPC = 0;
         System.out.println("Let us begin...");
         System.out.println("Rock, Paper, Scissors, Lizard, Spock");
