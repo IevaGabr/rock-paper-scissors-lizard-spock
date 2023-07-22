@@ -1,16 +1,14 @@
 public class Level1 {
 
     public static void main(String[] args) {
-        int countRounds = 1;
         System.out.println("Let us begin...");
         System.out.println("Rock, Paper, Scissors, Lizard, Spock");
-        Game game = new Game("User", "Computer");
-        while (countRounds <=3){
-            System.out.println("Round nr." + countRounds);
+        Game game = new Game(new Player("User"), new Player("Computer"));
+        for (int i = 1; i <= 3; i++) {
+            System.out.println("Round nr." + i);
             System.out.println(game.playRound());
-            countRounds++;
         }
-        if (game.getPlayer1Victories() > game.getPlayer2Victories()){
+        if (game.getPlayer1Victories() > game.getPlayer2Victories()) {
             System.out.println("You won!");
         } else if (game.getPlayer1Victories() < game.getPlayer2Victories()) {
             System.out.println("Computer won!");

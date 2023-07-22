@@ -36,7 +36,7 @@ public enum Shape {
         return null;
     }
 
-    public boolean checkStronger(Shape choice){
+    public boolean checkStronger(Shape choice) {
         return this.getStrongerThan().containsKey(choice.getName());
     }
 
